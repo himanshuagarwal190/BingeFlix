@@ -2,8 +2,87 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background-color: #202124;
+  color: white;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.year-badge{
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  border: 1px solid rgb(209, 30, 200);
+  background-color: rgb(209, 30, 200);
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.rating {
+  position: absolute;
+  top: 5px;
+  right: 4px;
+  border: 1px solid rgb(244, 159, 2);
+  background-color: rgb(244, 159, 2);
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.grey-badge {
+  border: 1px solid rgb(111, 108, 108);
+  border-radius: 20px;
+  background-color: rgb(111, 108, 108);
+  width: fit-content;
+  padding: 0px 20px;
+}
+
+.movie-title {
+  position: absolute;
+  padding-bottom: 10px;
+  bottom: 2px;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.blue-bg{
+  background-color: blue;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bottom {
+  bottom: 10px;
+}
+
+.border-white{
+  border: 1px solid white;
+}
+
+.p-l-5 {
+  padding-left: 5px;;
 }
 
 a {
@@ -13,4 +92,69 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.tile-box {
+  width: 200px;
+  height: 300px;
+}
+
+.container {
+  margin: 10px 40px;
+}
+
+.sm-20 {
+  width: 20px !important;
+  width: 20px !important;
+}
+.w-100{
+  width: 100%;
+}
+
+.w-33 {
+  width: 33%;
+}
+
+.w-66 {
+  width: 66%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-45 {
+  width: 45%;
+}
+
+.w-55 {
+  width: 55%;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.col-gap-8 {
+  column-gap: 8px;
+}
+
+.col-gap-30 {
+  column-gap: 30px;
+}
+
+.row-gap-30 {
+  row-gap: 30px;
+}
+
+.size-40 {
+  height: 40px;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
