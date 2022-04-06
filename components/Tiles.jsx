@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router';
 import config from '../config'
+import Link from 'next/link'
 
 export default function Tiles({ selection }){
     const [movieData, setMovieData] = useState([])
@@ -36,12 +36,15 @@ export default function Tiles({ selection }){
     return (
         <div onClick={onPageScroll} className="flex col-gap-30 row-gap-30 flex-wrap mt-10">
             {movieData.length > 0 ? movieData.map(data => (
-                <div key={data.id} className="relative">
-                    <img className="tile-box" src={'https://image.tmdb.org/t/p/original/' + data.poster_path} alt="movie-tile" />
-                    <div className='year-badge'>{new Date(data.release_date ? data.release_date : data.first_air_date).getFullYear()}</div>
-                    <div className='rating'>{data.vote_average}</div>
-                    <div className='movie-title'>{data.title ? data.title : data.original_name}</div>
-                </div>
+                <Link key={data.id} href={'watch/' + selection + '_' + data.id}>
+                    <a className="relative cursor-pointer">
+                        <img className="tile-box" src={'https://image.tmdb.org/t/p/original/' + data.poster_path} alt="movie-tile" />
+                        <div className='year-badge'>{new Date(data.release_date ? data.release_date : data.first_air_date).getFullYear()}</div>
+                        <div className='rating'>{data.vote_average}</div>
+                        <div className='movie-title'>{data.title ? data.title : data.original_name}</div>
+                    </a>
+                </Link>
+                
             )): <div>Loading...</div>}
         </div>
     )
