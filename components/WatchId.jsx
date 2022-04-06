@@ -112,13 +112,13 @@ export default function WatchId() {
                                 </div>
                                 <p className="pl-5 pb-5 iconText">{movieDetails.vote_average}</p>
                             </div>
-                            {trailerLink !== '#' && <a target="_blank" href={trailerLink} className="h-40 trailer flex item-center">
+                            {trailerLink !== '#' && <a target="_blank" rel="noreferrer" href={trailerLink} className="h-40 trailer flex item-center">
                                 <div className="trailerIcon">
                                     <PlayIcon />
                                 </div>
                                 <p className="pl-5 pb-5 iconText">Play Trailer</p>
                             </a>}
-                            <a target="_blank" href={`https://www.google.com/search?q=${movieDetails.title ? movieDetails?.title : movieDetails?.original_name} (${new Date(movieDetails.release_date ? movieDetails.release_date : movieDetails.first_air_date).getFullYear()})`} className="h-40 trailer flex item-center">
+                            <a target="_blank" rel="noreferrer" href={`https://www.google.com/search?q=${movieDetails.title ? movieDetails?.title : movieDetails?.original_name} (${new Date(movieDetails.release_date ? movieDetails.release_date : movieDetails.first_air_date).getFullYear()})`} className="h-40 trailer flex item-center">
                                 <div className="trailerIcon">
                                     <SearchIcon />
                                 </div>
@@ -132,7 +132,7 @@ export default function WatchId() {
                             {castMembers.map(data => {
                                 if(data?.known_for_department == 'Acting' && data?.profile_path){
                                     return (
-                                        <a target="_blank" href={`https://www.google.com/search?q=${data.original_name}`} key={data.id} className="card">
+                                        <a target="_blank" rel="noreferrer" href={`https://www.google.com/search?q=${data.original_name}`} key={data.id} className="card">
                                             <img className="actorImage" src={`https://image.tmdb.org/t/p/original${data.profile_path}`} alt="Actor" />
                                             <p className="actorName">{data.original_name}</p>
                                             <p className="character">{data.character}</p>
