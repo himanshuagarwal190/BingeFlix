@@ -1,11 +1,12 @@
 import { BeakerIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import config from '../config'
 
 export default function Navbar({ setSelection, selection, hideNavbar, genres, setGenres, setGenreSelected }) {
-
+    const genreRef = useRef()
+    
     useEffect(() =>{
         getGenres(selection)
     }, [selection])
@@ -31,6 +32,7 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
                 <div className="flex col-gap-30 w-45">
                     <div
                         onClick={(e) =>{
+                            genreRef.current.value = "0"
                             setGenreSelected(0)
                             setSelection("movie")
                         }}
@@ -45,6 +47,7 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
                     </div>
                     <div
                         onClick={(e) => {
+                            genreRef.current.value = "0"
                             setGenreSelected(0)
                             setSelection("tv")
                         }}
@@ -57,7 +60,7 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
                         <BeakerIcon className="sm-20" />
                         <p>TV Shows</p>
                     </div>
-                    <select className="genre" name="genre" onChange={(e) => setGenreSelected(parseInt(e.target.value))}>
+                    <select ref={genreRef} className="genre" name="genre" onChange={(e) => setGenreSelected(parseInt(e.target.value))}>
                         <option value="0">Choose Genre</option>
                         {genres.map((data, i) => (
                             <option key={i} value={data.id}>{data.name}</option>

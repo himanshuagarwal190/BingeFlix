@@ -47,8 +47,8 @@ export default function Tiles({ selection, movieData, setMovieData, genreSelecte
     
     return (
         <div onClick={onPageScroll} className="flex col-gap-30 row-gap-30 flex-wrap mt-10">
-            {movieData.length > 0 ? movieData.map(data => (
-                <Link key={data.id} href={'watch/' + selection + '_' + data.id}>
+            {movieData.length > 0 ? movieData.map((data, idx) => (
+                <Link key={idx} href={'watch/' + selection + '_' + data.id}>
                     <a className="relative cursor-pointer">
                         <img className="tile-box" src={'https://image.tmdb.org/t/p/original/' + data.poster_path} alt="movie-tile" />
                         <div className='year-badge'>{new Date(data.release_date ? data.release_date : data.first_air_date).getFullYear()}</div>
