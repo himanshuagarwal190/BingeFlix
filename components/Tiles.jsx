@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react'
 import config from '../config'
 import Link from 'next/link'
 
-export default function Tiles({ selection }){
-    const [movieData, setMovieData] = useState([])
+export default function Tiles({ selection, movieData, setMovieData, genreSelected }){
     let scrollCount = 1
 
     useEffect(()=>{
@@ -13,13 +12,26 @@ export default function Tiles({ selection }){
         getMovies(scrollCount)
         window.addEventListener("scroll", onPageScroll);
         return () => window.removeEventListener("scroll", onPageScroll)
-    },[selection])
+    },[selection, genreSelected])
 
     async function getMovies(pageCount){
         try {
             const url = config.movieDBAPIUrl + '/trending/' + selection + '/week?api_key=' + config.movieDBKey + '&page=' + pageCount
             const response = await axios.get(url)
-            setMovieData(prevState => [...prevState, ...response.data.results])
+            if(genreSelected != 0){
+                const movieArr = response.data.results.filter(movie  =>{
+                    if(movie.genre_ids.includes(genreSelected)) return movie
+                })
+                setMovieData(prevState => [...prevState, ...movieArr])
+            } else {
+                setMovieData(prevState => [...prevState, ...response.data.results])
+            }
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                scrollCount++
+                getMovies(scrollCount)
+             } else {
+                 return
+             }
         } catch(error){
             console.log(error)
         }

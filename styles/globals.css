@@ -294,3 +294,13 @@ a {
   margin-top: -10px;
   color: rgb(213, 210, 210);
 }
+
+.genre{
+  height: 40px;
+  align-self: center;
+  border:1px solid rgb(99, 96, 96);
+  border-radius: 20px;
+  padding: 10px 20px;
+  background-color: rgb(99, 96, 96);
+  color: white;
+}

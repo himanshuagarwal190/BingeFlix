@@ -8,6 +8,10 @@ import styles from '../styles/Home.module.css'
 export default function Home() {
 
   const [selection, setSelection] = useState('movie')
+  const [movieData, setMovieData] = useState([])
+  const [genres, setGenres] = useState([])
+  const [genreSelected, setGenreSelected] = useState(0)
+
 
   return (
     <div className={styles.container}>
@@ -18,8 +22,8 @@ export default function Home() {
       </Head>
 
       <main className='container'>
-        <Navbar selection={selection} setSelection={setSelection}/>
-        <Tiles selection={selection}/>
+        <Navbar selection={selection} setSelection={setSelection} genres={genres} setGenres={setGenres} setGenreSelected={setGenreSelected}/>
+        <Tiles selection={selection} movieData={movieData} setMovieData={setMovieData} genreSelected={genreSelected}/>
       </main>
     </div>
   )
