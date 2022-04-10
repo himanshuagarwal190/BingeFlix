@@ -30,7 +30,10 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
             {!hideNavbar && (
                 <div className="flex col-gap-30 w-45">
                     <div
-                        onClick={(e) => setSelection("movie")}
+                        onClick={(e) =>{
+                            setGenreSelected(0)
+                            setSelection("movie")
+                        }}
                         className={
                             selection == "movie"
                                 ? "flex col-gap-8 cursor-pointer grey-badge"
@@ -41,7 +44,10 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
                         <p>Movies</p>
                     </div>
                     <div
-                        onClick={(e) => setSelection("tv")}
+                        onClick={(e) => {
+                            setGenreSelected(0)
+                            setSelection("tv")
+                        }}
                         className={
                             selection == "tv"
                                 ? "flex col-gap-8 cursor-pointer grey-badge"
