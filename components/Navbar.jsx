@@ -8,7 +8,7 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
     const genreRef = useRef()
     
     useEffect(() =>{
-        getGenres(selection)
+        if(selection) getGenres(selection)
     }, [selection])
 
     async function getGenres(type) {

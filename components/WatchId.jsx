@@ -4,6 +4,7 @@ import axios from "axios";
 import config from "../config";
 import { useState } from "react";
 import { PlayIcon, SearchIcon, StarIcon } from '@heroicons/react/solid'
+import Recommendations from "./Recommendations";
 
 export default function WatchId() {
     const router = useRouter();
@@ -19,7 +20,7 @@ export default function WatchId() {
             getTrailer(selection, watchId);
             getCast(selection, watchId);
         }
-    }, [router.isReady]);
+    }, [router.isReady, router]);
 
     async function getWatchDetails(selection, watchId) {
         try {
@@ -144,6 +145,8 @@ export default function WatchId() {
                     </div>
                 </div>}
             </div>
+            <Recommendations/>
+
         </div>
     );
 }

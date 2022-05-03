@@ -68,10 +68,8 @@ body {
 }
 
 .justLogo {
-  width: 100%;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
+  margin: auto;
 }
 
 .movieContent{
@@ -164,6 +162,18 @@ a {
 }
 .w-100{
   width: 100%;
+}
+
+.py-10{
+  padding: 8px 20px
+}
+
+.ml-50{
+  margin-left: 50px;
+}
+
+.mb-50{
+  margin-bottom: 50px;
 }
 
 .ptb-15 {
@@ -280,7 +290,6 @@ a {
 }
 
 .cast {
-  width: 11%;
   overflow-x: auto;
   display: flex;
   position:absolute;
@@ -303,4 +312,53 @@ a {
   padding: 10px 20px;
   background-color: rgb(99, 96, 96);
   color: white;
+}
+
+.similar-img{
+  width: 350px;
+  height: 180px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.recommendation{
+  margin-left: 50px;
+  display: flex;
+  column-gap: 30px;
+  width: 95%;
+  overflow-x: auto;
+}
+
+.recomm-card{
+  border: 1px solid rgb(99, 96, 96);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.more{
+  margin: auto;
+  width: 100px;
+  padding: 0 40px;
+  margin-left: -30px;
+}
+
+.recomm-body{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+  position: relative;
+}
+
+.click {
+  cursor: pointer;
+}
+
+.votes{
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 5px;
+  position:absolute;
+  top: -194px;
+  right: 0px;
+  background-color: rgb(244, 159, 2);
 }
