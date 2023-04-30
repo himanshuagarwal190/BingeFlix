@@ -8,6 +8,7 @@ export default function Recommendations(){
     const [moreWatch, setMoreWatch] = useState([])
     const [type, setType] = useState(null)
     const [watchId, setWatchId] = useState(null)
+    const [moreButton, setMoreButton] = useState(true)
     const tiles = useRef()
     let pageCount = 1
 
@@ -37,7 +38,10 @@ export default function Recommendations(){
                 "&page=" +
                 pageCount
             const response = await axios.get(url)
-            setMoreWatch(prevState => [...prevState, ...response.data.results])
+            setMoreWatch(prevState => {
+                if(!response.data.results.length) setMoreButton(false)
+                return [...prevState, ...response.data.results]
+            })
             console.log(response.data)
         } catch (error) {
             console.log(error)
@@ -55,12 +59,12 @@ export default function Recommendations(){
                             <p className="votes">{data.vote_average.toFixed(1)}</p>
                         </div>
                     </div>
-                )): <div>Loading...</div>}
-                <div className="more">
+                )): <div>{pageCount == 1 ? "No Recommendations found" : "Loading..."}</div>}
+                {moreButton && <div className="more">
                     <div className="grey-badge py-10 click" onClick={() => getRecommendations(type, watchId, ++pageCount)}>
                         More+
                     </div>
-                </div>
+                </div>}
             </div>
         </div>
         
