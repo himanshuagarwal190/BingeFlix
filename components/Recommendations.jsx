@@ -32,7 +32,7 @@ export default function Recommendations(){
                 config.movieDBAPIUrl +
                 `/${selection}/` +
                 id +
-                "/similar?api_key=" +
+                "/recommendations?api_key=" +
                 config.movieDBKey +
                 "&page=" +
                 pageCount
@@ -47,9 +47,9 @@ export default function Recommendations(){
         <div className="mb-50">
             <h2 className="ml-50">Recommendations</h2>
             <div ref={tiles} className="recommendation">
-                {moreWatch.length > 0 ?  moreWatch.map((data, id) => (
-                    <div key={id} className="recomm-card" onClick={() => router.push(`/watch/${type}_${data.id}`)}>
-                        <img className="similar-img" src={`https://image.tmdb.org/t/p/original${data.backdrop_path}`} alt="" />
+                {moreWatch.length > 0 ?  moreWatch.map((data, id) =>( 
+                    data.poster_path && <div key={id} className="recomm-card" onClick={() => router.push(`/watch/${type}_${data.id}`)}>
+                        <img className="similar-img" src={`https://image.tmdb.org/t/p/original${data.poster_path}`} alt="" />
                         <div className="recomm-body">
                             <p>{data.title ? data.title : data.name} ({new Date(data.release_date ? data.release_date : data.first_air_date).getFullYear()})</p>
                             <p className="votes">{data.vote_average.toFixed(1)}</p>
