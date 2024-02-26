@@ -27,9 +27,9 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
     }
 
     return (
-        <div className="flex">
+        <div className="flex navbar">
             {!hideNavbar && (
-                <div className="flex col-gap-30 w-45">
+                <div className="navButtons flex col-gap-30 w-45">
                     <div
                         onClick={(e) =>{
                             genreRef.current.value = "0"
@@ -68,6 +68,11 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
                     </select>
                 </div>
             )}
+            <div className="hammburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div className={!hideNavbar ? "logo" : "justLogo"}>
                 <Link href="/">
                     <img src="/bingeflix.png" className="size-40" alt="" />
