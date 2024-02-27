@@ -3,9 +3,12 @@ import axios from "axios";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import config from '../config'
+import Sidebar from "./Sidebar";
 
 export default function Navbar({ setSelection, selection, hideNavbar, genres, setGenres, setGenreSelected }) {
     const genreRef = useRef()
+
+    const [openSidebar, setOpenSidebar] = useState(false);
     
     useEffect(() =>{
         if(selection) getGenres(selection)
@@ -26,15 +29,20 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
         }
     }
 
+    function toggleMoviesTv(value, closeSideBar = false) {
+        genreRef.current.value = "0"
+        setGenreSelected(0)
+        setSelection(value)
+        if(closeSideBar) setOpenSidebar(false)
+    }
+
     return (
         <div className="flex navbar">
             {!hideNavbar && (
                 <div className="navButtons flex col-gap-30 w-45">
                     <div
                         onClick={(e) =>{
-                            genreRef.current.value = "0"
-                            setGenreSelected(0)
-                            setSelection("movie")
+                            toggleMoviesTv("movie")
                         }}
                         className={
                             selection == "movie"
@@ -47,9 +55,7 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
                     </div>
                     <div
                         onClick={(e) => {
-                            genreRef.current.value = "0"
-                            setGenreSelected(0)
-                            setSelection("tv")
+                            toggleMoviesTv("tv")
                         }}
                         className={
                             selection == "tv"
@@ -68,11 +74,12 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
                     </select>
                 </div>
             )}
-            <div className="hammburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div className="hammburger" onClick={() => setOpenSidebar(prev => !prev)}>
+                <span className={openSidebar ? "hammburgerLine hammburgerCross" : "hammburgerLine"}></span>
+                <span className={openSidebar ? "hammburgerLine hammburgerCross" : "hammburgerLine"}></span>
+                <span className={openSidebar ? "hammburgerLine hammburgerCross" : "hammburgerLine"}></span>
             </div>
+            <Sidebar toggleMoviesTv={toggleMoviesTv} setOpenSidebar={setOpenSidebar} isOpen={openSidebar} />
             <div className={!hideNavbar ? "logo" : "justLogo"}>
                 <Link href="/">
                     <img src="/bingeflix.png" className="size-40" alt="" />
