@@ -24,12 +24,11 @@ export default function Tiles({ selection, movieData, setMovieData, genreSelecte
     })
 
     useEffect(()=>{
-        setMovieData([])
         pageNumber.current = 1
-        getMovies(pageNumber.current)
+        getMovies(pageNumber.current, true)
     },[selection, genreSelected])
 
-    async function getMovies(pageCount){
+    async function getMovies(pageCount, reset = false){
         try {
             loading.current = true
             const url = config.movieDBAPIUrl + '/trending/' + selection + '/week?api_key=' + config.movieDBKey + '&page=' + pageCount
@@ -42,7 +41,8 @@ export default function Tiles({ selection, movieData, setMovieData, genreSelecte
             } else {
                 movieArr = response.data.results
             }
-            if(pageCount != 1) movieArr = [...movieData, ...movieArr]
+            if(!reset) movieArr = [...movieData, ...movieArr]
+            if(!movieArr.length) return getMovies(++pageNumber.current, reset)
             setMovieData(movieArr)
             loading.current = false
         } catch(error){

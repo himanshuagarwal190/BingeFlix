@@ -36,6 +36,11 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
         if(closeSideBar) setOpenSidebar(false)
     }
 
+    function setGenre(value, closeSideBar = false) {
+        setGenreSelected(value)
+        if(closeSideBar) setOpenSidebar(false)
+    }
+
     return (
         <div className="flex navbar">
             {!hideNavbar && (
@@ -66,7 +71,7 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
                         <BeakerIcon className="sm-20" />
                         <p>TV Shows</p>
                     </div>
-                    <select ref={genreRef} className="genre" name="genre" onChange={(e) => setGenreSelected(parseInt(e.target.value))}>
+                    <select ref={genreRef} className="genre" name="genre" onChange={(e) => setGenre(parseInt(e.target.value))}>
                         <option value="0">Choose Genre</option>
                         {genres.map((data, i) => (
                             <option key={i} value={data.id}>{data.name}</option>
@@ -79,7 +84,7 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
                 <span className={openSidebar ? "hammburgerLine hammburgerCross" : "hammburgerLine"}></span>
                 <span className={openSidebar ? "hammburgerLine hammburgerCross" : "hammburgerLine"}></span>
             </div>
-            <Sidebar toggleMoviesTv={toggleMoviesTv} setOpenSidebar={setOpenSidebar} isOpen={openSidebar} />
+            <Sidebar genres={genres} setGenre={setGenre} toggleMoviesTv={toggleMoviesTv} setOpenSidebar={setOpenSidebar} isOpen={openSidebar} />
             <div className={!hideNavbar ? "logo" : "justLogo"}>
                 <Link href="/">
                     <img src="/bingeflix.png" className="size-40" alt="" />

@@ -1,6 +1,6 @@
 import { BeakerIcon } from "@heroicons/react/solid";
 
-export default function Sidebar({ isOpen, toggleMoviesTv, setOpenSidebar }){
+export default function Sidebar({ genres, setGenre, isOpen, toggleMoviesTv, setOpenSidebar }){
     return (
         <div className={isOpen ? "sidebar sidebarTranslate" : "sidebar"}>
             <div className="sidebarContainer">
@@ -13,6 +13,18 @@ export default function Sidebar({ isOpen, toggleMoviesTv, setOpenSidebar }){
                         <p>TV Shows</p>
                 </div>
                 <div className="divider moviesSideBarDivider"></div>
+                <div className="sideBarGenreContainer">
+                    {genres?.map((genre) => (
+                        <div
+                            key={genre.id}
+                            className="sideBarGenre"
+                            onClick={() => setGenre(genre.id, true)}
+                        >
+                            <p>{genre.name}</p>
+                        </div>
+                    ))}
+                </div>
+                
             </div>
             <div onClick={() => setOpenSidebar(false)} className="sidebarOpacity">
 
