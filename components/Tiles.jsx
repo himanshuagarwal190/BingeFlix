@@ -31,7 +31,7 @@ export default function Tiles({ selection, movieData, setMovieData, genreSelecte
     async function getMovies(pageCount, reset = false){
         try {
             loading.current = true
-            const url = config.movieDBAPIUrl + '/trending/' + selection + '/week?api_key=' + config.movieDBKey + '&page=' + pageCount
+            const url = `/api/trending/?selection=${selection}&pageCount=${pageCount}`
             const response = await axios.get(url)
             let movieArr = []
             if(genreSelected != 0){
