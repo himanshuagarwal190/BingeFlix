@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
-import config from "../config";
 import { useRouter } from "next/router";
 
 export default function Recommendations(){
@@ -28,15 +27,7 @@ export default function Recommendations(){
 
     async function getRecommendations(selection, id, pageCount){
         try {
-            console.log(watchId, 'hiiiii')
-            const url =
-                config.movieDBAPIUrl +
-                `/${selection}/` +
-                id +
-                "/recommendations?api_key=" +
-                config.movieDBKey +
-                "&page=" +
-                pageCount
+            const url = `/api/recommendation/?selection=${selection}&watchId=${id}&pageCount=${pageCount}`
             const response = await axios.get(url)
             setMoreWatch(prevState => {
                 if(!response.data.results.length) setMoreButton(false)

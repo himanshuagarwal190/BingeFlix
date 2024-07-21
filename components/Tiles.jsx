@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import config from '../config'
 import Link from 'next/link'
 
 export default function Tiles({ selection, movieData, setMovieData, genreSelected }){

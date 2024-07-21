@@ -2,7 +2,6 @@ import { BeakerIcon } from "@heroicons/react/solid";
 import axios from "axios";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import config from '../config'
 import Sidebar from "./Sidebar";
 
 export default function Navbar({ setSelection, selection, hideNavbar, genres, setGenres, setGenreSelected }) {
@@ -16,12 +15,7 @@ export default function Navbar({ setSelection, selection, hideNavbar, genres, se
 
     async function getGenres(type) {
         try {
-            const url =
-                config.movieDBAPIUrl +
-                "/genre/" +
-                type +
-                "/list?api_key=" +
-                config.movieDBKey
+            const url = `/api/genre/?type=${type}`
             const response = await axios.get(url)
             setGenres(response.data.genres)
         } catch (error) {

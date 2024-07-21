@@ -24,14 +24,7 @@ export default function WatchId() {
 
     async function getWatchDetails(selection, watchId) {
         try {
-            const url =
-                config.movieDBAPIUrl +
-                "/" +
-                selection +
-                "/" +
-                watchId +
-                "?api_key=" +
-                config.movieDBKey;
+            const url = `/api/watch/?selection=${selection}&watchId=${watchId}`
             const response = await axios.get(url);
             setMovieDetails(response.data)
 
