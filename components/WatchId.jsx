@@ -36,15 +36,7 @@ export default function WatchId() {
 
     async function getTrailer(selection, watchId){
         try {
-            const url =
-                config.movieDBAPIUrl +
-                "/" +
-                selection +
-                "/" +
-                watchId +
-                '/videos' +
-                "?api_key=" +
-                config.movieDBKey;
+            const url = `/api/videos/?selection=${selection}&watchId=${watchId}`
             const response = await axios.get(url);
             for(let i = 0; i < response.data.results.length; i++){
                 if(response.data.results[i].type == "Trailer"){
@@ -59,15 +51,7 @@ export default function WatchId() {
 
     async function getCast(selection, watchId){
         try {
-            const url =
-                config.movieDBAPIUrl +
-                "/" +
-                selection +
-                "/" +
-                watchId +
-                '/credits' +
-                "?api_key=" +
-                config.movieDBKey;
+            const url = `/api/credits/?selection=${selection}&watchId=${watchId}`
             const response = await axios.get(url);
             setcastMembers(response.data.cast)
         } catch (error) {
